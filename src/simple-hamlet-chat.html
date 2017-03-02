@@ -9,29 +9,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/virtual-chat/virtual-chat.html">
 <link rel="import" href="shared-styles.html">
-
-<dom-module id="my-view1">
+<script src="../mockScripts/hamlet.json"></script>
+<dom-module id="simple-hamlet-chat">
   <template>
     <style include="shared-styles">
-      :host {
+       :host {
         display: block;
-
         padding: 10px;
       }
     </style>
 
     <div class="card">
-      <div class="circle">1</div>
-      <h1>View One</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <h1>Simple chat view</h1>
+      <virtual-chat title="Hamlet" script="[[_hamletScript]]"></virtual-chat>
     </div>
   </template>
 
   <script>
     Polymer({
-      is: 'my-view1',
+      is: 'simple-hamlet-chat',
+
+      properties: {
+        _hamletScript: Object
+      },
+
+      ready: function () {
+        this._hamletScript = hamlet;
+      }
     });
   </script>
 </dom-module>
