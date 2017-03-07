@@ -32,17 +32,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
+
       app-header {
         color: #fff;
         background-color: var(--app-primary-color);
       }
+
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
 
+
       .drawer-list {
         margin: 0 20px;
       }
+
 
       .drawer-list a {
         display: block;
@@ -51,6 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: var(--app-secondary-color);
         line-height: 40px;
       }
+
 
       .drawer-list a.iron-selected {
         color: black;
@@ -67,6 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="simple-hamlet-chat" href="/simple-hamlet-chat">Simple Hamlet Chat</a>
+          <a name="script-selector" href="/script-selector">Script Selector</a>
         </iron-selector>
       </app-drawer>
 
@@ -82,6 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
           <simple-hamlet-chat name="simple-hamlet-chat"></simple-hamlet-chat>
+          <script-selector name="script-selector"></script-selector>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>

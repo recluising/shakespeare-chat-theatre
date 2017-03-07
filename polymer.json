@@ -3,6 +3,7 @@
   "shell": "src/my-app.html",
   "fragments": [
     "src/simple-hamlet-chat.html",
+    "src/script-selector.html",
     "src/my-view404.html"
   ],
   "sourceGlobs": [

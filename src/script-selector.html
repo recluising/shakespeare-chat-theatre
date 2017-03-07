@@ -11,9 +11,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/virtual-chat/virtual-chat.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="simple-hamlet-chat">
+<dom-module id="script-selector">
   <template>
     <style include="shared-styles">
        :host {
@@ -23,23 +24,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <!-- TODO: Improve hardcoded url -->
-    <iron-ajax url="http://localhost:8080/mockScripts/hamlet.json" last-response="{{_hamletScript}}" auto></iron-ajax>
+    <iron-ajax url="{{_urlToScript}}" last-response="{{_currentScript}}" auto></iron-ajax>
 
     <div class="card">
-      <h1>Simple chat view</h1>
-      <virtual-chat title="Hamlet" script="[[_hamletScript]]"></virtual-chat>
+      <h1>Script Selector</h1>
+      <iron-selector id="selector" attr-for-selected="name" selected="{{_selectedScript}}">
+        <div name="hamlet.json">Hamlet</div>
+        <div name="macbeth.json">Macbeth</div>
+        <div name="king-lear.json">King Lear</div>
+      </iron-selector>
+      <virtual-chat id="virtualChat" title="Hamlet" script="[[_currentScript]]"></virtual-chat>
     </div>
   </template>
 
   <script>
     Polymer({
-      is: 'simple-hamlet-chat',
+      is: 'script-selector',
 
       properties: {
         /**
          * Hamlet script for feeding virtual chat
          */
-        _hamletScript: Object
+        _currentScript: Object,
+        _selectedScript: {
+          type: String,
+          value: 'hamlet.json'
+        },
+        _urlToScript: {
+          type: String,
+          computed: '_generateUrl(_selectedScript)'
+        }
+      },
+      _generateUrl: function(scriptName){
+        return 'http://localhost:8080/mockScripts/' + scriptName;
       }
     });
   </script>
